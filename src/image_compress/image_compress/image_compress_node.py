@@ -19,7 +19,9 @@ class ImageCompressNode(Node):
             img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
         # img = cv2.resize(img, (640, 480))
-        _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 40])
+
+        # _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 40])
+        _, buf = cv2.imencode('.jpg', img)
 
         out = CompressedImage()
         out.header = img_msg.header
