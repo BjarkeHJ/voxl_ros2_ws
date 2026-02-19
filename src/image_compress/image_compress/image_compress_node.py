@@ -15,9 +15,8 @@ class ImageCompressNode(Node):
         print(len(img_msg.data))
         img = np.frombuffer(img_msg.data, np.uint8).reshape(img_msg.height, img_msg.width, -1)
         
-        print(len(img[:,0]))
-        print(len(img[0,:]))
-
+        print(f"Image message encoding {img_msg.encoding}")
+        print(f"Image Shape: {img.shape}")
 
         if img_msg.encoding == 'rgb8':
             img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
