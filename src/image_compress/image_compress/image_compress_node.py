@@ -23,7 +23,7 @@ class ImageCompressNode(Node):
         print(f"Image Shape: {img.shape}")
 
         img = cv2.resize(img, (640, 480))
-        _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY])
+        _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 40])
         # _, buf = cv2.imencode('.jpg', img)
 
         out = CompressedImage()
