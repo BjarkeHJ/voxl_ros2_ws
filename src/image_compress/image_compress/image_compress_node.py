@@ -14,14 +14,17 @@ class ImageCompressNode(Node):
     def img_callback(self, img_msg : Image):
         print(len(img_msg.data))
         img = np.frombuffer(img_msg.data, np.uint8).reshape(img_msg.height, img_msg.width, -1)
+        
+        print(len(img[:,0]))
+        print(len(img[0,:]))
+
 
         if img_msg.encoding == 'rgb8':
             img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
-        # img = cv2.resize(img, (640, 480))
-
-        # _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 40])
-        _, buf = cv2.imencode('.jpg', img)
+        img = cv2.resize(img, (640, 480))
+        _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY])
+        # _, buf = cv2.imencode('.jpg', img)
 
         out = CompressedImage()
         out.header = img_msg.header
