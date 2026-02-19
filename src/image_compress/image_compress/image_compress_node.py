@@ -18,8 +18,9 @@ class ImageCompressNode(Node):
         print(f"Image message encoding {img_msg.encoding}")
         print(f"Image Shape: {img.shape}")
 
-        if img_msg.encoding == 'rgb8':
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        img = cv2.cvtColor(img, cv2.COLOR_YUV2BGR_YUYV)
+
+        print(f"Image Shape: {img.shape}")
 
         img = cv2.resize(img, (640, 480))
         _, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY])
